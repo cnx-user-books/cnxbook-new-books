@@ -1,0 +1,261 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Xây dựng kế hoạch mang tính chiến lược cho việc sử dụng GIS</title>
+  <metadata>
+  <md:content-id>m30078</md:content-id><md:title>Xây dựng kế hoạch mang tính chiến lược cho việc sử dụng GIS</md:title>
+  <md:abstract>Xây dựng kế hoạch mang tính chiến lược cho việc sử dụng GIS</md:abstract>
+  <md:uuid>65322d0e-c678-4a5c-bebc-e97209a8b638</md:uuid>
+</metadata>
+
+<content>
+    <section id="id-276643685108">
+      <title>NHỮNG VẤN ĐỀ CẦN QUAN TÂM TRONG TỔ CHỨC THỰC HIỆN HỆ THỐNG GIS</title>
+      <section id="id-725790106733">
+        <title>Tổ chức hệ thống thông tin địa lý</title>
+        <para id="id21614754">Tổ chức hệ thống thông tin địa lý phải bắt đầu bằng nhiệm vụ đặt ra của hệ thống thông tin. Từ đó xác định được mức độ đòi hỏi của các loại thông tin cần thiết như thông tin thuộc tính tỷ lệ nào, phải có lớp thông tin nào, độ chính xác của thông tin và thông tin thuộc tính có dạng nào. Sau khi xác định được nhu cầu thông tin cần tìm xem thông tin này có được từ nguồn nào, có thể lấy được từ cơ sở dữ liệu quốc gia, cơ sở dữ liệu chuyên ngành mua trên thị trường thông tin. Nếu các nguồn khai thác thông tin đều chưa có hoặc có cần xác định tiếp sử dụng biện pháp nào để thu nhận các thông tin còn thiếu. Có thể được các công ty cung cấp thông tin hoặc tổ chức thu nhập hệ thống thông tin riêng cho số lượng dữ liệu cần có nên tổ chức quản lý dưới dạng tập trung hay phân tán cho nhu cầu và hoàn cảnh khai thác thông tin. Khi định dạng thông tin đã rõ mới thiết kế phần cứng và phần mềm phù hợp. Không cần có tham số mạnh hơn nhu cầu đòi hỏi cũng không yếu hơn để không thực hiện được nhiệm vụ cần thực hiện. Nếu cơ sở dữ liệu định dạng là phân tán thì phải thiết kế phần cứng dưới dạng máy tính (intranet). Khi dữ liệu cho phép các hệ thống thông tin khác truy nhập đến cần thiết kế các cổng extranet. Từ định hình cơ sở dữ liệu, nhu cầu quản lý và phần cứng đã được xác định tiếp tục xác định các phần mềm hệ thống, phần mềm quản trị dữ liệu địa lý và thuộc tính phần mềm quản trị nếu cần, phần mềm ứng dụng. Đôi khi các nhà tổ chức HTTT xét lựa chọn một giải pháp công nghệ hợp lý.</para>
+      </section>
+      <section id="id-0974298587405">
+        <title>Cơ sở dữ liệu địa lý và cơ sở dữ liệu thuộc tính</title>
+        <para id="id21828359">Phần mềm đã giới thiệu cơ sở dữ liệu của hệ thống thông tin địa lý có hai thành phần: cơ sở dữ liệu địa lý và cơ sở dữ liệu thuộc tính. Về lý thuyết có thể tổ chức quản lý cả 2 loại dữ liệu có cùng một cơ sở dữ liệu và do cùng một hệ quản trị dữ liệu. Lúc này các dữ liệu thông tin được coi như các lớp riêng biệt gắn liền với các đối tượng địa lý. Trong thực tế vấn đề trở nên phức tạp khi số lượng dữ liệu quá lớn, vấn đề tìm thông tin và truy cập thông tin được giải quyết. Vì vậy người ta tổ chức quản lý các dữ liệu này trong hai cơ sở dữ liệu riêng biệt với hai hệ quản trị riêng biệt.</para>
+        <para id="id21828398">Cơ sở dữ liệu thuộc tính được lưu trữ tương tự như các loại cơ sở dữ liệu thô khác: ngân hàng, luật pháp, hành chính, v..v.. các dữ liệu được lưu trữ dưới dạng các cột gọi là trường (field) và các hàng gọi là tấm tin (record). Vấn đề sẽ không bàn luận gì nhiều nếu có một bản. Thực tế bức tranh quan hệ giữa các dữ liệu đã làm phải có tổ chức quản lý ở nhiều bản khác nhau và phải tìm được một số trường mô tả được mối quan hệ giữa các bản. Căn cứ vào các mối quan hệ này để giải quyết việc tìm dữ liệu và cập nhật dữ liệu. Dạng tổ chức cơ sở dữ liệu như vậy được gọi là cơ sở dữ liệu quan hệ. Hiện nay quản trị cơ sở thường gặp đều ở dạng cơ sở dữ liệu quan hệ như DBase, INFOMI, SQL Serve, ORACLE..v..v. Sự khác nhau giữa các hệ quản trị dữ liệu là dữ liệu (format) và ngôn ngữ hỏi đáp để tìm dữ liệu và cập nhật dữ liệu.</para>
+        <para id="id21828405">Cơ sở dữ liệu địa lý (chủ yếu là bản đồ) không thể lưu trữ và quản lý theo nguyên tắc các loại cơ sở dữ liệu thông thường nói trên. Các dữ liệu bản đồ được cấu tạo bởi các thành phần là toạ độ các điểm, dãy toạ độ các điểm nối giữa 2 điểm (đường) và dãy cùng nối liên tiếp trong một nhóm điểm (miền). Như vậy bức tranh dữ liệu ở đây khác so với dữ liệu thông thường. Vì chúng ta có các đối tượng địa lý khác nhau nên các điểm, đường nét của từng loại đối tượng địa lý sẽ được quản lý riêng trong từng lớp thông tin. Trong thông tin này có một lớp thông tin cơ bản nhất là lớp về hệ quy chiếu (lưới toạ độ) để thể hiện các lớp thông tin theo yêu cầu. Hệ quản trị cơ sở dữ liệu địa lý quen thuộc là ARC/INFO và MGE. Mỗi hệ cũng có định dạng dữ liệu khác nhau, xác định hình học khác nhau, xác định quan hệ hình học khác nhau và thủ tục tìm - cập nhật khác nhau.</para>
+      </section>
+      <section id="id-187644715687">
+        <title>Quản trị dữ liệu và khai thác dữ liệu</title>
+        <para id="id22130875">Hai hệ cơ sở dữ liệu thuộc tính và địa lý nói trên đã được giải quyết khá chọn lọc trong việc quản trị từng cơ sở dữ liệu. Công việc quản trị dữ liệu bao gồm nhiều công việc như:</para>
+        <list id="id22130888" list-type="bulleted">
+          <item>Đưa thông tin vào cơ sở dữ liệu </item>
+          <item>Tìm nhanh chóng các dữ liệu cần thiết </item>
+          <item>Tổ chức cặp nhật dữ liệu mới gồm việc xoá bỏ các dữ liệu không cần bổ sung các dữ liệu mới và hiệu chỉnh các dữ liệu đang có (hãy lưu ý rằng việc khó khăn tiếp tục cặp nhật là do mối quan hệ phức tạp giữa các dữ liệu).</item>
+          <item>Phân chia các nhóm thông tin theo phân cấp bảo mật thông tin:</item>
+        </list>
+        <list id="id21588899" list-type="bulleted">
+          <item>Đảm bảo an toàn thông tin trong cơ sở dữ liệu (không mất thông tin ngay trường hợp hỏng hóc toàn hệ thống).</item>
+          <item>Đánh giá hiện trạng của dữ liệu </item>
+          <item>Xuất thông tin theo nhu cầu của người sử dụng.</item>
+        </list>
+        <para id="id21588923">Trong hệ thống thông tin địa lý, vấn đề quản trị dữ liệu có một đặc thù riêng. Đó là vấn đề khai thác liên kết giữa các cơ sở địa lý và cơ sở dữ liệu thuộc tính. Vấn đề đặt ra là tìm mối quan hệ giữa đối tượng địa lý trong cơ sở dữ liệu địa lý với thuộc tính của nó trong cơ sở dữ liệu thuộc tính và ngược lại. Lý thuyết thông tin hiện đại đã giải quyết trọn vẹn việc quyết định quan hệ này. Cách giải quyết có thể đi theo hướng nhúng dữ liệu của cơ sở dữ liệu này vào môi trường của cơ sở dữ liệu kia hoặc có thể tìm một môi trường trung gian để thể hiện loại dữ kiện.</para>
+        <para id="id21588954">Khai thác dữ kiện là nhu cầu đặt ra có tầm quan trọng đặc biệt để giúp áp dụng mọi điều kiện thuận lợi tiếp cận với dữ liệu trong phạm vi được phép khai thác được thể hiện được các dạng sau:</para>
+        <list id="id21588967" list-type="bulleted">
+          <item>Tìm các nhóm dữ liệu để cung cấp cho các cơ sở dữ liệu khác thông qua đặc tính hoặc các thiết bị ngân hàng.</item>
+          <item>Phân tích tổng hợp thông tin để trả lời một số câu hỏi mang tính quản lý.</item>
+          <item>Thực hiện các bài tính ứng dụng cho nhiều mục đích khác nhau như quản lý sản xuất kinh doanh, quản lý xã hội, nghiên cứu khoa học, giáo dục đào tạo, nâng cao dân trí.</item>
+          <item>Hiển thị dữ liệu ở các dạng khác nhau như bản đồ, biểu đồ, đồ thị, bản số, bản phục vụ các nhu cầu kinh tế -xã hội </item>
+        </list>
+      </section>
+      <section id="id-816442538951">
+        <title>Định chuẩn hệ thống và hệ thống mở</title>
+        <para id="id21942340">Hệ thống thông tin càng phát huy tác dụng rộng rãi nếu hệ thống này được định. Điều kiện này giúp cho thông tin được trao đổi rộng rãi hơn, người sử dụng thông hơn, hệ thống cập nhật thông tin đa dạng hơn, hiệu quả là tránh được lãng phí trong phát triển. Muốn vậy các ngành cần thống nhất một chuẩn chung mang tính Quốc gia định chuẩn có thể hiểu một cách đơn giản là mọi hệ thống thông tin đều có thể hiển thị của nhau. Vấn đề chuẩn hoá thông tin đang là nội dung chủ yếu trong giai đoạn công nghệ thông tin hiện nay. Công việc chuẩn hoá thông tin bao gồm các nội dung sau:</para>
+        <list id="id21942370" list-type="bulleted">
+          <item>Chuẩn hoá môi trường tin học trong môi trường hệ thống, đồ hoạ cơ sở dữ liệu.</item>
+          <item>Chuẩn hoá thông tin tiếng việt.</item>
+          <item>Chuẩn hoá định dạng (FORMAT) thông tin ở các thể loại: chữ- số, vector, Multimedia, v.v.</item>
+          <item>Chuẩn hoá hệ qui chiếu Quốc gia.</item>
+          <item>Chuẩn hoá hệ toạ độ và cao độ nhà nước.</item>
+          <item>Chuẩn hoá hệ thống địa danh và địa giới hành chính các cấp.</item>
+          <item>Chuẩn hoá việc định nghĩa các đối tượng địa lý, nội dung bản đồ các ký hiệu, các phân lớp thông tin địa lý.</item>
+          <item>Chuẩn hoá đường chuyền dữ liệu trên mạng.</item>
+        </list>
+        <para id="id22325111">Vấn đề chuẩn hoá cũng cần tránh xu hướng quá khích trong việc cưỡng bức một số sản phẩm phần cứng và phần mềm nào đó.</para>
+        <para id="id22325121">Vấn đề chuẩn hoá sẽ được giải quyết nhẹ nhàng hơn khi con người đưa ra khá nhiều hệ thống mở. Khái niệm này được thể hiện ở các khía cạnh sau:</para>
+        <list id="id22325131" list-type="bulleted">
+          <item>Mở về phần cứng là đảm bảo không bị lạc hậu khi công nghệ phần cứng phát triển có thể liên kết với các phần cứng khác;</item>
+          <item>Mở về phần mềm là việc công bố rõ các giao diện ở đầu vào và đầu ra cùng khả năng kết nối với các phần mềm ứng dụng khác;</item>
+          <item>Mở về cơ sở dữ liệu có các giao diện chung với các cơ sở dữ liệu khác.</item>
+          <item>Tính mở của hệ thống không chỉ để giải quyết việc giảm nhẹ công việc chuẩn còn tạo khả năng dễ dàng mở rộng hệ thống trong quá trình công nghệ thông tin phát triển mạnh mẽ như hiện nay.</item>
+        </list>
+      </section>
+      <section id="id-936106640551">
+        <title>Hệ thống thông tin địa lý và mạng vi tính - Internet</title>
+        <para id="id22325189">Xây dựng một hệ thống thông tin địa lý cho các cơ sở dữ liệu nhỏ chỉ cần một hoặc một nhóm máy tính nối với nhau bằng mạng cục bộ. Vấn đề mạng máy tính trong trường hợp này không đặt ra nhiều lắm. Cấu trúc mạng có dạng một máy tính đóng vai trò máy chủ nối với một số máy tính đảm nhận nhiệm vụ dữ liệu, một số máy tính thực hiện việc ứng dụng vào một số máy tính hiển thị thông tin.</para>
+        <para id="id22325203">Đối với một cơ sở dữ liệu lớn người ta phải tổ chức các cơ sở dữ liệu phân tán thành nhiều cơ sở dữ liệu nhỏ nối với nhau bằng mạng diện rộng. Mỗi cơ sở dữ liệu nhỏ tổ chức như ở trên có gắn thêm một máy tính đóng vai trò netserver cùng với một bộ liệu đường dài gồm modem và router. Vấn đề cần giải quyết là đường truyền dữ liệu, an toàn dữ liệu trên đường truyền và bảo mật dữ liệu.</para>
+      </section>
+      <section id="id-26650479011">
+        <title>Các vấn đề chi phí tổ chức hệ thống GIS</title>
+        <para id="id22325220">Ở các nước đang và kém phát triển, chi phí đầu tư khá lớn để tổ chức và duy trì hoạt động của một hệ thống GIS là trở ngại rất quan trọng trong quá trình phát triển công nghệ GIS. Chi phí sẽ bao gồm:</para>
+        <list id="id21991409" list-type="bulleted">
+          <item>Đầu tư ban đầu cho việc lắp đặt trang thiết bị và phần mềm trong đó chi phí dành cho cài đặt phần mềm GIS gấp 10 lần chi phí mua sắm thiết bị.</item>
+          <item>Chi phí lớn để chuẩn bị và hoàn thiện các nguồn số liệu hiện có nhằm đáp ứng với tiêu chuẩn của hệ thống GIS. Tỉ lệ đầu tư cho số liệu là 100 lần so với 10 lần của phần mềm, Như vậy tỉ lệ đầu tư chung sẽ là:</item>
+        </list>
+        <para id="id22325225">Thiết bị GISPhần mềm GISSố liệu theo yêu cầu</para>
+        <para id="id21991447">  (1 lần) (10 lần)  (100 lần)</para>
+        <para id="id21991473">Trong quá trình hoạt động còn nảy sinh các chi phí tiềm ẩn khác (Hidden costs) để (i) mua sắm vật tư đặc chủng (ii) thay thế và nâng cấp khả năng thiết bị hay phần mềm (iii) lắp đặt thiết bị ngoại vi để lưu trữ có hiệu quả những khối lượng số liệu ngày càng lớn.</para>
+        <para id="id21991492">Ngoài ra, hiện nay với những nhu cầu sử dụng GIS ngày càng tăng kéo theo sự đổi mới nhanh chóng thiết bị và phần mềm, nguồn chi phí lớn để tái đầu tư, mở rộng và hiện đại hoá sẽ là một đòi hỏi với bất kỳ hệ thống GIS nào trong giai đoạn 3 đến 5 năm.</para>
+      </section>
+      <section id="id-774269699362">
+        <title>Những hợp phần thiết yếu cho sự hoạt động thành công hệ thống GIS</title>
+        <para id="id22438395">Bên cạnh vấn đề thiết bị và phần mềm, một hệ thống GIS chỉ hoạt động thành công khi những hợp phần thiết yếu sau đây được quan tâm và đầu tư đúng mức, đó là:</para>
+        <list id="id22438408" list-type="bulleted">
+          <item>Nhân sự và huấn luyện </item>
+        </list>
+        <para id="id22438417">Một hệ thống GIS hoạt động có hiệu quả khi được điều hành bởi các chuyên gia có kinh nghiệm và những kỹ thuật viên GIS thành thạo. Để có đội ngũ nhân sự này, một kế hoạch huấn luyện gồm nhiều giai đoạn và nhiều trình độ khác nhau (trong nước và ngoài nước) cần được soạn thảo và thực hiện chu đáo, kế hoạch này bao gồm cả các dạng huấn luyện trong công việc (on - job trainning) là mô hình phổ biến hiện nay để có thể chuyển giao được công nghệ một cách nhanh chóng, có hiệu quả và tiết kiệm.</para>
+        <list id="id22438446" list-type="bulleted">
+          <item>Bảo dưỡng thiết bị và hỗ trợ hoạt động GIS</item>
+        </list>
+        <para id="id22438457">Là dạng công nghệ mới nên vấn đề bảo dưỡng thiết bị GIS là yếu tố cần thiết để duy trì tốt hoạt động của hệ thống. Những trục trặc ở phần cứng (hardware) và phần mềm (software) cũng như ở các thiết bị ngoại vi, đòi hỏi phải được ngăn ngừa và thay thế bởi chế độ bảo dưỡng định kỳ do các chuyên gia có kinh nghiệm thực hiện. Bên cạnh đó, cần thiết lập được mạng lưới các đơn vị hay công ty tư vấn để hỗ trợ các hoạt động của hệ thống GIS, bao gồm (y) tư vấn giải pháp khi có sự cố (ii) tư vấn việc nâng cấp và thay thế hay mở rộng thiết bị, phần mềm (iii) cung ứng kịp thời vật tư và thiết bị thay thế v.v...</para>
+        <list id="id22438492" list-type="bulleted">
+          <item>Số liệu</item>
+        </list>
+        <para id="id21677417">Trong hoạt động GIS, số liệu là một trong những hợp phần thiết yếu nhất và được xem là nguồn "nhiên liệu" của hệ thống. Do đó, tổ chức thu thập số liệu hiện có và cung ứng số liệu thường xuyên là nội dung rất quan trọng để một hệ thống GIS có thể hoạt động được. Hiện nay, số liệu rất phân tán với nhiều nguồn và nhiều dạng khác nhau, nên tiến trình tái hiệu chỉnh số liệu hiện có theo một định dạng (format) tiêu chuẩn để có thể sử dụng trong GIS là công việc bắt buộc của hệ thống GIS.</para>
+        <list id="id21677444" list-type="bulleted">
+          <item>Tài chính</item>
+        </list>
+        <para id="id21677452">Đây là yếu tố mấu chốt của việc xây dựng và duy trì hoạt động của hệ thống GIS. Tài chính không những cần thiết cho việc đầu tư ban đầu và vận hành thiết bị - phần mềm GIS, các chương trình huấn luyện và chính sách đãi ngộ đối với lực lượng chuyên gia - kỹ thuật viên GIS cũng đòi hỏi những chi phí lớn. Do vậy, mức phát triển của hệ thống GIS cần căn cứ khả năng đáp ứng của nguồn tài chính, do nhiều chi phí sẽ phát sinh theo cấp số nhân so với đầu tư ban đầu về thiết bị. Tuy vậy, nguồn tài chính cũng sẽ được thu lại từ các hoạt động có hiệu quả của hệ thống GIS. Bên cạnh đó, cần tính đến các lợi ích không thể tính bằng tiền do việc ứng dụng công nghệ GIS đem lại trong các lĩnh vực nghiên cứu - quản lý› và quy hoạch phát triển.</para>
+        <list id="id21677477" list-type="bulleted">
+          <item>Sự phối hợp và cộng tác của những tổ chức cung cấp số liệu và sử dụng kết quả GIS</item>
+        </list>
+        <para id="id21677489">Một hệ thống GIS chỉ hoạt động có hiệu quả trong môi trường có sự cộng tác của nhiều tổ chức, cơ quan từ cấp trung ương đến địa phương. Có thể rằng "đầu vào" (input) và "đầu ra" (output) của một hệ thống GIS tuỳ thuộc vào yếu tố phối hợp và cộng tác của các đơn vị cung cấp số liệu và sử dụng kết quả chỉ với nguồn số liệu đầy đủ - phong phú và chính xác, hệ thống GIS mới hoạt động có hiệu quả và cung cấp các kết quả hữu ích, các kết quả này sẽ thuyết phục người sử dụng tiếp tục đặt ra các yêu cầu mới, từ đó kích thích và đẩy mạnh hoạt động của hệ thống GIS. Chu trình nói trên là quy luật tất yếu và là điều kiện cần có để một công nghệ như GIS có thể phát triển.</para>
+      </section>
+    </section>
+    <section id="id-63415694447">
+      <title>TIẾN TRÌNH TRIỂN KHAI MỘT HỆ THỐNG GIS</title>
+      <para id="id21866384">Để triển khai một hệ thống GIS hoạt động có hiệu quả, một tiến trình bao gồm 4 vấn đề sau đây cần được xác định và giải quyết </para>
+      <section id="id-281758132705">
+        <title>Vấn đề tổ chức</title>
+        <para id="id21866399">Hệ thống GIS sẽ được tổ chức như thế nào tại địa phương, bao gồm (i) quy mô quản lý của hệ thống và (ii) mô hình số liệu sẽ được sử dụng hay cung cấp từ hệ thống này,</para>
+      </section>
+      <section id="id-300540257801">
+        <title>Vấn đề kỹ thuật</title>
+        <para id="id21866420">Cần xác định rõ được (i) thiết bị và phần mềm được cài đặt, (ii) trình độ và yêu cầu người sử dụng kết quả GIS và (iii) tổ chức hỗ trợ các hoạt động GIS như thế nào.</para>
+      </section>
+      <section id="id-0773970043737">
+        <title>Vấn đề số liệu </title>
+        <para id="id21866443">Có 3 khía cạnh cần được quan tâm, đó là (i) khả năng thích ứng của các dạng số liệu đối với hệ thống GIS, (ii) tiêu chuẩn về chất lượng số liệu và (iii) tổ chức quản lý số liệu.</para>
+      </section>
+      <section id="id-442898010891">
+        <title>Vấn đề huấn luyện và nhân sự </title>
+        <para id="id21866465">Cần chuẩn bị (i) một chương trình huấn luyện cơ bản và nâng cao, (ii) tổ chức bộ máy nhân sự và (iii) bố trí con người thích hợp.</para>
+      </section>
+    </section>
+    <section id="id-182275634027">
+      <title>KẾ HOẠCH MANG TÍNH CHIẾN LƯỢC TRONG ỨNG DỤNG CÔNG NGHỆ GIS</title>
+      <para id="id21866486">Hiện nay GIS đã và đang được sử dụng ở các nước đang phát triển, và nó đã mang lại những kết quả khả quan. Tuy nhiên để có thể ứng dụng và sử dụng các trang thiết bị của GIS, điều quan trọng trước hết là cần phải xây dựng một kế hoạch đầu tư, sử dụng, bảo trì cũng như ứng dụng vào trong thực tế, tất cả các kế hoạch đó được xem như là kế hoạch mang tính chiến lược cho sự phát triển.</para>
+      <para id="id22152182">Trước khi bắt đầu xây dựng hoặc đề xuất các chương trình phát triển, cần thiết phải có một giai đoạn tiền khả thi cho một kế hoạch mang tính chiến lược. Kế hoạch đó nên chứa các đặc điểm như sau:</para>
+      <list id="id22152196" list-type="bulleted">
+        <item>Các đề nghị cho việc xây dựng các chương trình phụ nếu cần</item>
+        <item>Mô tả các hoạt động sắp tới</item>
+        <item>Sắp xếp các công việc nào cần thiết phải được xử lý bằng máy tính</item>
+        <item>Xây dựng các giả định cần thiết để chứng minh các quyết định và lợi nhuận cũng như các đo lường về mặt kỹ thuật của các tổ chức cơ quan được yêu cầu</item>
+        <item>Lập kế hoạch và xây dựng lịch làm việc cho các hoạt động khác nhau.</item>
+        <item>Đề xuất các thành viên cần thiết cho việc thực hiện chương trình</item>
+        <item>Xây dựng kế hoạch đầu tư và kinh phí cho chương trình</item>
+        <item>Cần thiết phải tổ chức các khoá huấn luyện GIS, cùng với sự tham gia và hướng dẫn của các chuyên gia về GIS </item>
+        <item>Tổ chức lại cơ cấu của các cơ quan</item>
+        <item>Lập kế hoạch sử dụng kinh phí</item>
+        <item>Tổ chức kế hoạch thực hiện các chương trình</item>
+      </list>
+      <para id="id21570820">Các kỹ thuật bao hàm trong GIS đang được phát triển một cách nhanh chóng và liên tục. Tuy nhiên người sử dụng GIS có khả năng cải tiến cũng như phát triển các ứng dụng mới của nó ở bất kỳ thời gian nào. Do đó, kế hoạch phát triển mang tính chiến lược nên mang tính linh động đủ để cho phép việc thực hiện được hiệu quả với các điều kiện đã nêu ở trên.</para>
+      <para id="id21570838">Việc sắp xếp các trình tự trong kế hoạch dựa vào kết quả của việc phân tích lợi nhuận, trong đó việc đầu tư cho GIS được kiểm chứng với việc đầu tư hiện có cũng như sắp tới ở một vài đơn vị nào đó của tổ chức. Thêm vào đó, các tổ chức hay cơ quan pháp nhân cần thiết phải xem xét và phân tích nhiệm vụ chính của từng đơn vị của họ.</para>
+      <figure id="id21570857">
+        <media id="id7996506" alt=""><image src="../../media/graphics1-b7ae.png" mime-type="image/png" height="264" width="595"/></media>
+      </figure>
+      <para id="id21570881">Hình 10.1: Một điển hình cho sự khởi đầu GIS lý tưởng (Nguồn : Tor Bernhardsen, 1992)</para>
+      <para id="id21570892">Do đó một kế hoạch mang tính chiến lược nên đề ra và làm sáng tỏ các vấn đề sau:</para>
+      <list id="id21570900" list-type="bulleted">
+        <item>Các công việc nào hay dữ liệu nào cần thiết phải được xử lý với GIS?</item>
+      </list>
+      <para id="id21570911">Nguồn số liệu hiện có, các đường dây thông tin, sự phân tích các sản phẩm và lợi nhuận là cơ sở cho việc hình dung ra những gì cần thiết phải được xử lý bằng GIS. Các hình thức đó bao gồm:</para>
+      <list id="id21570925" list-type="bulleted">
+        <item>Các công việc nào sẽ được thay bởi GIS?</item>
+        <item>Các hồ sơ hoặc dữ liệu nào sẽ được thay thế bởi các dữ liệu GIS?</item>
+      </list>
+      <list id="id21842163" list-type="bulleted">
+        <item>Các nguồn số liệu sắp tới sẽ là những gì, bao nhiêu?</item>
+      </list>
+      <para id="id21842173">Việc mô tả các nguồn số liệu sẽ có sắp tới phải liên quan đến các mục đích cần thiết phải được giải quyết. Việc so sánh nguồn số liệu sẽ có với nguồn số liệu đang có sẽ giúp chỉ ra các công việc nào cần thiết giải quyết và các công việc nào phải được thêm vào cũng như các công việc nào nên được kiểm chứng.</para>
+      <para id="id21842189">Đối với các cơ quan hay tổ chức chính phủ, việc thay đổi toàn bộ nguồn số liệu do nguyên nhân của việc thay đổi cách quản lý thông thường với cách quản lý bằng GIS, chúng có thể được xem như là sự thay đổi từ hình thức liên tục đến hình thức song song. Các tiến trình công việc được trình bày qua hình sau đây:</para>
+      <figure id="id21842211">
+        <media id="id8117895" alt=""><image src="../../media/graphics2-2fe0.png" mime-type="image/png" height="175" width="518"/></media>
+      </figure>
+      <para id="id21842234">Hình 10.2: Sự thay đổi tiến trình thực hiện các công việc từ liên tục (a) đến song song (b) khi đưa các trang thiết bị GIS vào sử dụng (Nguồn : Tor Bernhardsen, 1992)</para>
+      <list id="id21842250" list-type="bulleted">
+        <item>Khi nào sẽ bắt đầu thực hiện chương trình sử dụng GIS?</item>
+      </list>
+      <para id="id21842261">Nhìn chung, sự khởi đầu cho việc sử dụng và ứng dụng GIS càng trễ thì kinh phí của việc thu thập và xử lý số liệu cũng như thời gian sẽ cao và dài hơn trước khi lợi nhuận được thu hồi. Tóm lại, các yếu tố ảnh hưởng đến việc quyết định khi nào thì bắt đầu việc sử dụng và ứng dụng GIS được trình bày như sau:</para>
+      <list id="id21842265" list-type="bulleted">
+        <item>Các kỹ thuật có liên quan thì hiện hữu nhưng chúng ta không biết bằng cách nào để khai thác nó</item>
+        <item>Việc trì hoãn sẽ hoãn lại việc thu hồi lợi nhuận và từ đó lợi nhuận thu được từ các chương trình ít đi</item>
+        <item>Tất cả các kỹ thuật cũng như tiến bộ hiện nay đều được diễn tiến liên tục do đó sẽ không có một thời gian tốt nhất cho việc khởi sự GIS.</item>
+      </list>
+      <figure id="id21842077">
+        <media id="id8017053" alt=""><image src="../../media/graphics3-32df.png" mime-type="image/png" height="263" width="622"/></media>
+      </figure>
+      <para id="id21842101">Hình 10.3: Việc bắt đầu đưa vào sử dụng các trang thiết bị GIS sớm và trễ. (Nguồn : Tor Bernhardsen, 1992)</para>
+      <para id="id21842121">(Nếu bắt đầu sớm thì kết quả tỉ số lợi nhuận sẽ cao hơn bắt đầu trễ) </para>
+      <list id="id21842132" list-type="bulleted">
+        <item>Mức độ đầu tư cho chương trình là bao nhiêu?</item>
+      </list>
+      <para id="id21842143">Việc chọn lựa một quyết định được thực hiện trong việc đầu tư thường gặp những trở ngại giữa việc đầu tư các kỹ thuật mới khi so sánh giữa những chi phí thông thường và việc đầu tư cho các trang thiết bị mắc tiền hơn. Do đó, một số hướng dẩn cho các mức độ đầu tư có thể được tóm tắt như sau:</para>
+      <list id="id21842148" list-type="bulleted">
+        <item>Các suy nghĩ thì to lớn nhưng khi bắt đầu cần thiết phải thận trọng </item>
+        <item>Xây dựng các đầu tư lớn sau khi thực hiện các chương trình thử nghiệm thí điểm</item>
+        <item>Trong việc thay đổi từ cách quản lý và ứng dụng thông thường bằng cách quản lý GIS, việc đầu tư chính nên tập trung vào các phương tiện, trang thiết bị cho giai đoạn khởi đầu, từ đó chương trình sẽ mang lại nhiều lợi nhuận hơn.</item>
+        <item>Các số liệu thu thập được nên nhanh chóng chuyển đổi sang các số liệu số (digital form)</item>
+        <item>Càng nhiều đề tài được thực hiện trên cùng một vùng càng gia tăng lợi ích cũng như lợi nhuận cho người sử dụng</item>
+      </list>
+      <list id="id22125652" list-type="bulleted">
+        <item>Phạm vi hoạt động của chương trình hay GIS là bao nhiêu?</item>
+      </list>
+      <para id="id22125664">Về nguyên tắc, một quyết định cơ bản để thực hiện một chương trình trong một phạm vi nào đó của GIS có thể thu thập các số liệu số (digital) cho một phạm vi rộng của các vùng hay các thông tin đầy đủ cho một số vùng nào đó của một hoạt động ở mức độ chi tiết và nó sẽ thay đổi rất nhanh. Do đó, diễn tiến của vấn đề kinh tế đối với tỉ số lợi nhuận là một thông số quan trọng nhất. Tóm lại, một hướng dẫn cho một phạm vi hoạt động của GIS có thể được tóm lược như sau:</para>
+      <list id="id22125690" list-type="bulleted">
+        <item>Ít nhất phải có 1 đề tài bao trùm cho một vùng hoặc một khu vực cần thiết nào đó phải được chuyển đổi trước khi lợi nhuận được thu hồi.</item>
+        <item>Khi đã chuyển sang GIS thì tất cả các số liệu xử lý theo cách trước đây nên được chuyển toàn bộ sang hình thức của GIS, tránh việc sử dụng hoặc xử lý đồng thời số liệu theo cách xử lý thông thường và theo cách của GIS.</item>
+        <item>Việc tổ chức bộ phận quản lý cho một phạm vi hay cho một vùng nào đó nhất thiết phải được ưu tiên chú trọng, trong khi đó các tổ chức điều hành của một chương trình về cơ bản ít cần thiết hơn.</item>
+      </list>
+      <list id="id21840601" list-type="bulleted">
+        <item>Sự sắp xếp tổ chức đơn vị cơ quan như thế nào? </item>
+      </list>
+      <para id="id21840612">Hiệu quả của việc khai thác và khám phá các kỹ thuật mới trong một đơn vị hay tổ chức thường thay đổi tuỳ vào các chuỗi công việc mà nó ảnh hưởng đến toàn bộ cơ cấu tổ chức. Về thực tế, việc thay đổi cơ cấu tổ chức có thể gặp nhiều khó khăn vì cơ cấu tổ chức củ đã được ổn định, do đó sẽ gặp khó khăn khi xây dựng một cơ cấu tổ chức mới. Việc thay đổi cơ cấu tổ chức cũng sẽ thay đổi các thành viên và các nhân sự có liên quan và việc thay đổi các thành viên luôn đưa đến mối liên hệ giữa con người, điều đó chắc sẽ đưa đến những khó khăn trong việc điều hành cũng như tiên đoán những sự việc sẽ xảy ra.</para>
+      <para id="id21840645">Về nguyên tắc, các khó khăn về mặt kỹ thuật có thể được giải quyết theo chiều thăng tiến bằng việc mua sắm và cài đặt thêm các trang thiệt bị mới, cũng như các phần mềm mới,.. mặc dù nó sẽ đòi hỏi nhiều kinh phí, tuy nhiên đối với các chương trình được lập kế hoạch và điều hành tốt, chi phí đó sẽ không đáng kể. Trong khi đó, việc thay thế các thành viên trong ban điều hành thì lại không theo chiều thăng tiến và có thể phát sinh ra những khó khăn và trở ngại không theo ý muốn. Từ đó, việc tổ chức sắp xếp lại cơ cấu tổ chức thường đòi hỏi sự chú ý trong việc quản lý một cách thường xuyên và liên tục hơn là việc chú ý vào các khó khăn về mặt kỹ thuật.Một chương trình mang lại một kết quả tốt thường được thực hiện bằng cách quản lý chính diện, người ta thường tìm ra được những lợi nhuận của các kỹ thuật mới trong khi lại chống đối việc thay đổi cơ cấu tổ chức một cách mạnh mẽ. Do đó, việc tham gia của các chuyên gia là cần thiết trong việc thực hiện một chương trình GIS, nhưng họ lại ít có khả năng diễn đạt một chi tiết không liên quan trong chương trình. Thí dụ như các chuyên gia về máy tính thì thường luôn luôn tuân thủ các nguyên tắc và kỷ luật trong công việc của họ, trong khi đó họ lại thiếu một quan điểm bao quát được đòi hỏi có liên quan đến các khó khăn về mặt tổ chức.</para>
+      <figure id="id21840689">
+        <media id="id8101618" alt=""><image src="../../media/graphics4.png" mime-type="image/png" height="261" width="446"/></media>
+      </figure>
+      <para id="id22010379">Hình 10.4: Để đạt được thành công, một kỹ thuật mới phải được chấp nhận ở tất cả các cấp trong một tổ chức (Nguồn : Tor Bernhardsen, 1992)</para>
+      <figure id="id22010399">
+        <media id="id8083248" alt=""><image src="../../media/graphics5.png" mime-type="image/png" height="159" width="401"/></media>
+      </figure>
+      <para id="id22010423"/>
+      <para id="id22010427">Hình 10.5: Sự thay đổi trong quan điểm khi đưa ra một kỹ thuật mới trong một tổ chức (Nguồn : Tor Bernhardsen, 1992)</para>
+      <para id="id22010444">Như đã thảo luận ở trên, cần thiết phải có sư tham gia của các chuyên gia về GIS, nếu không tiến trình thực hiện có thể sẽ bị đình trệ hoặc công việc sẽ được thực hiện theo các chiều hướng khác không đúng với mục đích đã đề ra. Do đó việc thành lập và duy trì các thành viên chuyên gia nên được đặt ở vị trí ưu tiên. Việc quản lý nhân sự cho một giai đoạn chuyển giao các kỹ thuật mới nên bao gồm các yếu tố sau:</para>
+      <list id="id21052686" list-type="bulleted">
+        <item>Xác định các yếu tố ảnh hưởng đến nhân sự</item>
+        <item>Lập kế hoạch cho việc đào tạo, hoặc bổ sung kiến thức và sắp xếp lại vị trí các nhân sự</item>
+        <item>Nhấn mạnh rõ các công việc họ phải làm cũng như trách nhiệm của họ đối với công việc đó</item>
+        <item>Các công nhân hoặc người làm thuê cũng được đưa vào trong kế hoạch</item>
+        <item>Xác định rõ từng vị trí cũng như lương bổng cho từng thành viên</item>
+        <item>Lập kế hoạch cho sự xoay vòng các công việc</item>
+        <item>Diễn đạt và trình bày cơ cấu tổ chức phù hợp và đơn giản nhất, bao gồm:</item>
+      </list>
+      <list id="id21052750" list-type="bulleted">
+        <item>Các thành viên chính thức trong ban quản lý</item>
+        <item>Các thành viên không chính thức được phép thay thế các thành viên chính thức trong trường hợp cấn thiết</item>
+        <item>Phân chia cụ thể các công việc cho các thành viên</item>
+        <item>Nhấn mạnh rõ mối liên hệ giữa ban điều hành và bộ phận thực hiện, cũng như giữa và trong các tổ chức</item>
+        <item>Nên giữ lại những điều thuận lợi cũng như sức mạnh của tổ chức</item>
+        <item>Chứng nhận các thành viên cũng như các công việc của họ một cách thích hợp</item>
+        <item>Tạo ra một môi trường với các công việc thử thách và đòi hỏi nhiều sự tập trung cũng như suy nghĩ để cải tiến kỹ thuật của họ</item>
+      </list>
+      <para id="id21830041">Do đó, các yếu tố về mặt tổ chức quan trọng nhất có thể được tóm lược như sau:</para>
+      <list id="id21830050" list-type="bulleted">
+        <item>Các khó khăn về mặt tổ chức thường nhiều hơn các khó khăn về mặt kỹ thuật</item>
+        <item>Việc tổ chức hay sắp xếp lại nên được xem xét kỹ lưỡng </item>
+        <item>Việc giới thiệu GIS ảnh hưởng đến những thay đổi trong chu trình hiện có của sự trao đổi thông tin giữa các đơn vị cũng như trong đơn vị của một tổ chức</item>
+        <item>Các chu trình của công việc được thay đổi sẽ điều khiển việc thay đổi tổ chức</item>
+        <item>Ít nhất là 1/4 thành viên của một tổ chức có thể sẽ được chuyển sang các công việc khác</item>
+        <item>Việc hợp tác điều hành phải được lập ra một cách cụ thể</item>
+        <item>Giai đoạn khởi đầu của sự lắp đặt các trang thiết bị cho GIS có thể được tổ chức như là một đề án. Các thay đổi của tổ chức nên được thử nghiệm trước khi đi đến việc thay đổi toàn bộ</item>
+        <item>Việc thay đổi cơ cấu tổ chức về mặt lâu dài có thể được thực hiện sau giai đoạn thử nghiệm các trang thiết bị mới của GIS </item>
+      </list>
+      <list id="id21830132" list-type="bulleted">
+        <item>Kinh phí và hướng sử dụng kinh phí như thế nào?</item>
+      </list>
+      <para id="id22001324">Một chương trình lắp đặt các hệ thống của GIS nên có một kinh phí mà nó bao gồm cả sự phân bố các hoạt động trong khoảng thời gian của chương trình và cho phép nó phải được kiểm chứng.</para>
+      <para id="id22001338">Các cơ quan thuộc về chính phủ thường phải được quyết định nên đầu tư kinh phí vào các trang thiết bị mới dựa vào nguồn kinh phí hiện có hoặc trích từ quỹ sử dụng theo tỉ lệ của thị trường. </para>
+      <list id="id22001353" list-type="bulleted">
+        <item>Hướng tổ chức thực hiện cũng như sắp xếp các thành viên và nhiệm vụ của họ trong chương trình như thế nào?</item>
+      </list>
+      <para id="id22001366">Về mặt thực tế, các chương trình thiết lập hệ thống GIS thường được thực hiện dưới sự góp ý và quyết định của các thành viên trong chương trình. Vì thế, các yêu cầu về thành phần các thành viên phải được xem xét một cách cẩn thận, và các thành viên khi được chỉ định phải sẵn sàng làm việc một cách có hiệu quả cho chương trình ở bất kỳ thời gian hay điều kiện nào. Về mặt nguyên tắc, điều này thường đòi hỏi các thành viên phải được bảo đảm an tâm về các mặt từ đó họ sẽ đầu tư hết thời gian cho công việc mà họ phải đảm trách đối với chương trình, tương tự cũng nên được áp dụng cho các cá nhân được thuê để phục vụ cho chương trình.</para>
+      <para id="id22001400">Một tổ chức mạnh cũng như được hoạt động độc lập thì sẽ dễ dàng thành công đối với bất kỳ việc thiết lập cũng như ứng dụng của GIS. Một chương trình về việc thiết lập hệ thống GIS không cần thiết phải được lập một cách vĩnh viễn, nó có thể được hoàn tất và giải tán khi các trang thiết bị GIS đã được đưa vào hoạt động. GIS, máy vi tính và các chuyên viên thì thường dễ dàng tìm kiếm hơn là phải đào tạo lại các nhân viên mới. Tất cả các chương trình nên cần những người hăng hái, say sưa với công việc cũng như những người có thể giải quyết được những vấn đề mà chương trình đặt ra.</para>
+      <para id="id22001432">Việc thuê mướn cũng như hợp đồng các chuyên gia từ bên ngoài để vào cùng thực hiện một chương trình thì thường có lợi hơn trong chiến lược của chương trình đó, họ không nhất thiết phải nằm trong ban điều hành cũng như ban tổ chức, mà nên sử dụng họ như những người có thể giải quyết những khó khăn và vướng mắc trong các lãnh vực cũng như các bất hoà hơn là những thành viên của tổ chức.</para>
+    </section>
+  </content>
+</document>

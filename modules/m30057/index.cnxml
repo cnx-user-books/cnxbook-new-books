@@ -1,0 +1,194 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Tổ chức cơ sở dữ liệu trong GIS</title>
+  <metadata>
+  <md:content-id>m30057</md:content-id><md:title>Tổ chức cơ sở dữ liệu trong GIS</md:title>
+  <md:abstract>Chức năng của hệ thống thông tin địa lý là để cải thiện khả năng người sử dụng để đánh giá đưa đến sự quyết định trong nghiên cứu, qui hoạch và quản lý. Để sắp xếp cho một số hệ thống thông tin, người sử dụng cần phải được cung cấp dữ liệu một cách đầy đủ và hữu hiệu, điều này đạt được bởi phương pháp của hệ thống quản lý dữ liệu (DBMS). Một DBMS có thể được định nghĩa như sau:
+	Một sự liên kết các dữ liệu đã lưu trữ cùng với nhau mà không gây một trở ngại hoặc việc làm dư thừa không cần thiết nhằm giúp ích cho chương trình được gia tăng khả năng sử dụng lên gấp bội; dữ liệu được lưu trữ để chúng là chương trình độc lập mà dữ liệu được sử dụng một cách phổ biến, và việc điều khiển trong việc thêm dữ liệu mới, hoặc sửa đổi và khôi phục dữ kiện hiện có bên trong hệ thống dữ liệu. Dữ liệu được kết cấu như thế để cung cấp một nền tảng cho việc phát triển sau này "(Martin, 1977)</md:abstract>
+  <md:uuid>d1da1add-c9b9-49ff-95fd-939180b25de2</md:uuid>
+</metadata>
+
+<content>
+    <section id="id-585827495555">
+      <title>KHÁI NIỆM CƠ BẢN VỀ HỆ CƠ SỞ DỮ LIỆU</title>
+      <para id="id10337673">Để dễ dàng cho việc giải thích các khái niệm trước hết hệ thống bản vẽ máy bay bằng máy tính. Dữ liệu lưu trữ trong máy tính bao gồm thông tin về hành khách, chuyến bay, đường ..v..v.. Mọi thông tin về mối quan hệ này được biểu diễn trong máy thông qua việc đặt chỗ của khách hàng. Vậy làm thế nào để biểu diễn được dữ liệu đó và để đảm bảo cho hành khách đi đúng chuyến?</para>
+      <list id="id22250372" list-type="bulleted">
+        <item>Dữ liệu nêu trên được lưu trong máy theo một qui định nào đó và được gọi là cơ sở dữ liệu (CSDL, tiếng Anh là Database). </item>
+        <item>Phần chương trình để có thể xử lý, thay đổi dữ liệu này là hệ quản trị cơ sở dữ liệu (HQTCSDL, Database Management System). </item>
+      </list>
+      <para id="id22240983">Theo nghĩa này HQTCSDL có nhiệm vụ rất quan trọng như là một bộ diễn dịch (Interpreter) với ngôn ngữ bậc cao nhằm giúp người sử dụng có thể dùng được hệ thống mà ít nhiều không cần quan tâm đến thuật toán chi tiết hoặc biểu diễn dữ liệu trong máy.</para>
+    </section>
+    <section id="id-159342601717">
+      <title>CÁC LOẠI THÔNG TIN TRONG HỆ THỐNG THÔNG TIN ĐỊA LÝ</title>
+      <para id="id22240989">Như trên đã giới thiệu dữ liệu trong hệ thống thông tin địa lý bao gồm dữ liệu địa lý và dữ liệu thuộc tính: </para>
+      <para id="id21910565">* Dữ liệu địa lý: bao gồm các thể loại</para>
+      <list id="id19058839" list-type="bulleted">
+        <item>Ảnh hàng không vũ trụ </item>
+        <item>Bản đồ trực ảnh (orthophotomap)</item>
+        <item>BaÍn đồ nền địa hình lập từ ảnh hàng không - vũ trụ </item>
+        <item>Bản đồ địa hình lập từ số liệu đo đạc mặt đất </item>
+        <item>Bản đồ địa chính </item>
+        <item>Bản đồ địa lý tổng hợp từ các loại bản đồ địa hình.</item>
+      </list>
+      <para id="id22455274">Các loại ảnh và bản đồ nói trên đều ở dạng số và lưu lại dưới dạng vector hoặc raster hỗn hợp raster-vector. Các dữ liệu địa lý dưới dạng vector được phân lớp thông tin yêu cầu của việc tổ chức các thông tin. Thông thường người ta hay phân lớp theo tính chất thông tin: lớp địa hình, lớp thuỷ văn, lớp đường giao thông, lớp dân cư, lớp thức phụ, lớp giới hành chính v.v.. Trong nhiều trường hợp để quản lý sâu hơn, người ta sẽ phân lớp chuyên biệt hơn như trong lớp thuỷ văn được phân thành các lớp con: các lớp sông lớn, sông nhỏ, lớp biển, lớp ao hồ,v.v…</para>
+      <para id="id22455278">Các thông tin ở dạng raster là các thông tin nguồn và các thông tin hỗ trợ, không gian quản lý như một đối tượng địa lý. Các thông tin ở dạng vector tham gia trực tiếp quản lý và được định nghĩa như những đối tượng địa lý. Các đối tượng này thể hiện ở 3 dạng: điểm, đường và vùng hoặc miền. Mỗi đối tượng đều có thuộc tính hình học riêng như kích thước, miền vị trí. Vấn đề được đặt ra là tổ chức lưu trữ và hiển thị các thông tin vector như thế nào để thoả mãn các yêu cầu sau:</para>
+      <list id="id21932247" list-type="bulleted">
+        <item>Thể hiện đầy đủ các thông tin cần thiết </item>
+        <item>Độ dư và độ thừa nhỏ nhất </item>
+        <item>Truy cập thông tin nhanh</item>
+        <item>Cập nhật thông tin dễ dàng và không sai sót (xoá bỏ thông tin không cần thiết, bổ sung thông tin mới , chỉnh lý các thông tin đã lạc hậu)</item>
+        <item>Thuận lợi cho việc hiển thị thông tin</item>
+      </list>
+      <para id="id21875718">* Dữ liệu thuộc tính (Attribute): là các thông tin giải thích cho các hiện tượng địa lý gắn liền với hiện tượng địa lý. Các thông tin này được lưu trữ dữ liệu thông thường. Vấn đề đặt ra là là phải tìm mối quan hệ giữa thông tin địa lý và thông tin thuộc tính. Từ thông tin ta có thể tìm ra được các thông tin kia trong cơ sở dữ liệu.</para>
+    </section>
+    <section id="id-95669649871">
+      <title>KIẾN TRÚC MỘT HỆ CƠ SỞ DỮ LIỆU</title>
+      <para id="id21593621">Một CSDL được phân thành các mức khác nhau. Ở đây có thể xem như chỉ có một CSDL đơn giản và có một hệ phần mềm QTCSDL.</para>
+      <figure id="id21991568">
+        <media id="id1171534914736" alt=""><image src="../../media/graphics1-d3a8.png" mime-type="image/png" height="242" width="630"/></media>
+      </figure>
+      <para id="id21837991">Hình 6.1: Cấu trúc hệ Cơ sở dữ liệu</para>
+      <section id="id-113755384585">
+        <title>Sự trừu tượng hoá dữ liệu</title>
+        <list id="id22025895" list-type="bulleted">
+          <item>CSDL vật lý (mức vật lý) là các tệp dữ liệu theo một cấu trúc nào đó được lưu trên các thiết bị nhớ thứ cấp (như đĩa từ, băng từ, ... ) </item>
+          <item>CSDL mức khái niệm là một sự biểu diễn trừu tượng của CSDL vật lý (còn có thể nói tương đương: CSDL mức vật lý là sự cài đặt cụ thể của CSDL mức khái niệm. </item>
+          <item>Các khung nhìn (view) là cách nhìn, là quan niệm của từng người sử dụng đối với CSDL mức khái niệm. Sự khác nhau giữa khung nhìn và mức khái niệm thực chất là không lớn.</item>
+        </list>
+        <figure id="id21624889">
+          <media id="id1171531984405" alt=""><image src="../../media/graphics2-d979.png" mime-type="image/png" height="209" width="522"/></media>
+        </figure>
+        <para id="id21109344">Hình 6.2: Sơ đồ tổng quát hệ cơ sở dữ liệu</para>
+      </section>
+      <section id="id-988558923064">
+        <title>Thể hiện và lược đồ của CSDL</title>
+        <section id="id-061307763023">
+          <title>Thể hiện của CSDL (INSTANCE)</title>
+          <para id="id21572189">Khi CSDL đã được thiết kế, thường người ta quan tâm tới “bộ khung“ hay còn gọi là “mẫu” của CSDL. Dữ liệu có trong CSDL gọi là thể hiện của CSDL, mặc dù khi dữ liệu thay đổi trong một chu kỳ thời gian nào đó thì ”bộ khung“ của CSDL vẫn không thay đổi.</para>
+          <para id="id22163737">CSDL luôn thay đổi mỗi khi thông tin được thêm vào hay bị xoá đi. Tập hợp các thông tin lưu trữ trong CSDL tại một thời điểm nào đó được gọi là một thể hiện của CSDL.</para>
+        </section>
+        <section id="id-63618594786">
+          <title>Lược đồ của CSDL (Scheme)</title>
+          <para id="id21964396">Thiết kế tổng quan của CSDL được gọi là lược đồ (hay sơ đồ) của CSDL. Lược đồ của CSDL ít khi bị thay đổi. Trong một ngôn ngữ lập trình, nó tương ứng với các tập định nghĩa của các kiểu dữ liệu (kiểu mẫu tin, kiểu bảng, …)</para>
+          <para id="id7906839">Thường “ bộ khung” nêu trên bao gồm một số danh mục hoặc chỉ tiêu hoặc một số kiểu của các thực thể trong CSDL. Giữa các thực thể có thể có mối quan hệ nào đó với nhau. Ở đây sử dụng thuật ngữ “ lược đồ” để thay thế cho khái niệm “ bộ khung”. </para>
+          <para id="id7906854">Lược đồ khái niệm là bộ khung của CSDL mức vật lý, khung nhìn được gọi là lược đồ con (Subscheme).</para>
+        </section>
+        <section id="id-221235980875">
+          <title>Lược đồ khái niệm và mô hình dữ liệu </title>
+          <para id="id22192141">Lược đồ khái niệm là sự biểu diễn thế giới thực bằng một loại ngôn ngữ phù hợp, hệ QTCSDL cung cấp ngôn ngữ định nghĩa dữ liệu cho lược đồ con (subscheme data definition language) để xác định lược đồ khái niệm. Đây là ngôn ngữ bậc cao có khả năng mô tả lược đồ khái niệm bằng cách biểu diễn của mô hình dữ liệu. Ví dụ mô hình dữ liệu phù hợp là một đồ thị có hướng (mô hình mạng - Network model), trong đó các đỉnh biểu diễn mối quan hệ giữa các thực thể (như hành khách, chuyến bay), các cạnh của đồ thị biểu diễn mối quan hệ giữa các thực thể (như xác định đội bay cho mỗi chuyến bay).</para>
+        </section>
+      </section>
+      <section id="id-583004983246">
+        <title>Các mô hình của CSDL</title>
+        <para id="id22434469">- Ðể dễ dàng minh hoạ và phân biệt giữa mô hình phân cấp và mô hình lưới, xem xét ví dụ sau đây: </para>
+        <para id="id22434480">- Cho một bản đồ đơn giản gồm 2 đa giác được xác định bởi tập hợp các đường thẳng trong có được một đường chung của 2 đa giác. Mỗi đường thẳng được xác định bởi tập các đường thẳng trong đó có một đường chung của hai đa giác. Mỗi đường thẳng được xác định bởi các cặp toạ độ </para>
+        <para id="id22455295">Hình 6.3: Bản đồ A</para>
+        <para id="id22455305">Ða giác I gồm 4 cạnh a,b,c,d, với 4 đỉnh 1,2,3,4.</para>
+        <para id="id21931267">Ða giác II gồm 4 cạnh c,e,f,g với các đỉnh 3,4,5,6</para>
+        <section id="id-45918324267">
+          <title>Mô hình phân cấp (HIERACHICAL)</title>
+          <para id="id21931280">Mô hình dữ liệu là một cây, trong đó các nút biểu diễn các tập thực thể, giữa các nút con và nút cha được liên hệ theo một mối quan hệ xác định. Điểm nổi bật trong các thủ tục truy xuất đến một đối tượng trong mô hình phân cấp là đường dẫn đi từ gốc đến phần tử cần xét trong cây phân cấp.</para>
+          <para id="id21842309">Hình 6.4: Biểu diễn bản đồ A bằng mô hình phân cấp (Nguồn : Phạm Trọng Mạnh, Phạm Vọng Thành, 1999)</para>
+          <para id="id21413840">Mô hình phân cấp khá phù hợp với những hình thức tổ chức phân cấp trong xã hội. Thường gặp trong các hệ thống máy tính là mô hình quản lý thư mục</para>
+        </section>
+        <section id="id-127347957484">
+          <title>Mô hình lưới (Network Model) </title>
+          <para id="id21854506">Mô hình dữ liệu kiểu lưới là mô hình cho phép dùng một mô hình đồ thị trực tiếp và đơn giản cho dữ liệu.</para>
+          <para id="id19055758">Để dễ dàng minh hoạ và phân biệt giữa mô hình phân cấp và mô hình lưới, xem xét ví dụ sau đây: </para>
+          <para id="id19055765">Cho một bản đồ A đơn giản gồm 2 đa giác I và II được xác định bởi tập hợp các đường thẳng trong đó có được một đường chung của 2 đa giác. Mỗi đường thẳng được xác định bởi các cặp toạ độ.</para>
+          <para id="id21854510">Hình 6.5 Biểu diễn bản đồ A bằng mô hình lưới (Nguồn : Phạm Trọng Mạnh, Phạm Vọng Thành, 1999)</para>
+          <para id="id21112405">Mô hình lưới và mô hình phân cấp nói chung là khá bất tiện cho lưu trữ và khai thác xử lý bởi vì toạ độ các điểm, một số cạnh phải lưu trữ nhiều lần (như ví dụ trên các cạnh c phải lưu trữ 2 lần) v..v.. gây nên sự dư thừa dữ liệu. Ngoài ra, hệ thống còn phải cần lưu trữ một số lớn các con trỏ móc nối gây nên phức tạp trong quá trình cập nhật, biến đổi dữ liệu, đặc biệt khi thêm bớt một cạnh hoặc một một đỉnh nào đó.</para>
+        </section>
+        <section id="id-349030587171">
+          <title>Mô hình quan hệ (Relational Model)</title>
+          <para id="id20991281">Mô hình này dựa trên cơ sở khái niệm lý thuyết tập hợp của các quan hệ, tức là tập các K - bộ với K cố định.</para>
+          <para id="id22325472">Thuận lợi của mô hình quan hệ là được hình thức hoá toán học chặt chẽ do đó các xử lý, thao tác với dữ liệu là dễ dàng, có tính độc lập dữ liệu cao. Cấu trúc dữ liệu đơn giản mềm dẻo trong xử lý và dễ dàng cho người sử dụng. Đặc biệt các phép tính cập nhật dữ liệu cho mô hình quan hệ nói chung là ít phức tạp hơn nhiều so với các mô hình khác.</para>
+          <para id="id20991284">Một cách đơn giản hơn có thể hiểu mối quan hệ là một bảng 2 chiều tệp độc lập, trong đó mỗi cột (trường) là một thuộc tính, mỗi hàng (bộ) là một đối tượng. Trong thí dụ trên, có cấu trúc các quan hệ (bảng) như sau:</para>
+          <para id="id22325481">Hình 6.5 Biểu diễn bản đồ A bằng mô hình quan hệ (Nguồn : Phạm Trọng Mạnh, Phạm Vọng Thành, 1999)</para>
+          <para id="id20973794">Trong 3 loại mô hình nêu trên thì mô hình quan hệ có nhiều ưu điểm và được nhiều người quan tâm hơn cả. Bởi lẽ, mô hình dữ liệu quan hệ có tính độc lập rất cao, lại dễ dàng sử dụng. Điều quan trọng hơn cả, mô hình quan hệ được hình thức hoá toán học tốt, do đó được nghiên cứu, phát triển và cho được nhiều kết quả lý thuyết cũng hư ứng dụng trong thực tiễn.</para>
+          <para id="id20973798">Trên cơ sở mô hình dữ liệu quan hệ, đến nay đã phát triển thêm một số loại mô hình khác nhằm mô tả và thể hiện thế giới thực một cách chính xác và phù hợp hơn như mô hình quan hệ thực thể (Entily Relationship model), mô hình dữ liệu hướng đối tượng (Object Oriented Model)</para>
+        </section>
+      </section>
+      <section id="id-587903425507">
+        <title>Tính độc lập dữ liệu (Data independence)</title>
+        <section id="id-2154152999">
+          <title>Sự phụ thuộc dữ liệu của các ứng dụng hiện nay</title>
+          <para id="id21109295">Một hệ ứng dụng được gọi là phụ thuộc dữ liệu khi không thể thay đổi được cấu trúc lưu trữ hoặc chiến lược truy xuất mà không ảnh hưởng đến chương trình ứng dụng.</para>
+          <para id="id21109308">Lúc đó, các khó khăn gây nên bởi cấu trúc mặt ghép nối của các chương trình xử lý tập tin, chứ không liên quan gì đến vấn đề mà hệ ứng dụng viết ra để giải quyết.</para>
+        </section>
+        <section id="id-845979344093">
+          <title>Yêu cầu của các hệ ứng dụng</title>
+          <para id="id21017908">- Các hệ ứng dụng khác nhau cần có những cái nhìn khác nhau đối với những dữ liệu khác nhau.</para>
+          <para id="id21017918">- Người quản trị cơ sở dữ liệu phải có khả năng thay đổi cấu trúc lưu trữ hoặc chiến lược truy xuất để đáp ứng các yêu cầu thay đổi mà không cần phải sửa đổi các chương trình ứng dụng hiện có.</para>
+        </section>
+        <section id="id-469136174909">
+          <title>Định nghĩa tính độc lập dữ liệu</title>
+          <para id="id22274910">Tính độc lập dữ liệu là tính bất biến của các hệ ứng dụng đối với các thay đổi trong cấu trúc lưu trữ và chiến lược truy xuất.</para>
+        </section>
+        <section id="id-157120696028">
+          <title>Phân loại tính độc lập dữ liệu</title>
+          <para id="id20991225">* Độc lập dữ liệu ở mức vật lý:</para>
+          <para id="id22275363">Theo hình trên, từ khung nhìn, tới CSDL khái niệm và CSDL vật lý cho thấy có hai mức “độc lập tư liệu”. Thứ nhất: Lược đồ có thể thay đổi do người quản trị CSDL mà không cần thay đổi lược đồ con. Việc tổ chức lại CSDL vật lý (thay đổi các tổ chức, cấu trúc dữ liệu trên các thiết bị nhớ thứ cấp) có thể làm thay đổi hiệu quả tính toán của các chương trình ứng dụng nhưng không đòi hỏi phải viết lại các chương trình đó. Tính độc lập này gọi là Độc lập dữ liệu mức vật lý.</para>
+          <para id="id22275367">* Độc lập dữ liệu ở mức logic:</para>
+          <para id="id22275373">Mối quan hệ giữa các khung hình và lược đồ khái niệm cho thêm một loại độc lập, gọi là độc lập dữ liệu logic. Khi sử dụng một CSDL, có thể cần thiết để thay đổi lược đồ khái niệm như thêm thông tin về các loại khác nhau của các thực thể hoặc bớt xoá các thông tin về các thực thể đang tồn tại trong CSDL. Việc thay đổi lược đồ khái niệm không làm ảnh hưởng tới các lược đồ con đang tồn tại, do đó không cần thiết phải thay đổi các chương trình ứng dụng.</para>
+        </section>
+      </section>
+    </section>
+    <section id="id-370086696687">
+      <title>HỆ QUẢN TRỊ CƠ SỞ DỮ LIỆU CỦA GIS</title>
+      <section id="id-240195215575">
+        <title>Giới thiệu </title>
+        <para id="id22423093">Hệ quản trị cơ sở dữ liệu là hệ thống quản lý, lưu trữ, bảo trì toàn bộ cơ sở dữ liệu. Hệ quản trị cơ sở dữ liệu cũng cung cấp các công cụ cho phép người dùng hỏi đáp, tra cứu và tác động vào cơ sở dữ liệu. Cơ sở dữ liệu cho một hệ thống GIS bao gồm 2 cơ sở dữ liệu thành phần chính là :</para>
+        <list id="id21995268" list-type="bulleted">
+          <item>Cơ sở dữ liệu địa lý (không gian)</item>
+          <item>Cơ sở dữ liệu thuộc tính (phi không gian)</item>
+        </list>
+        <para id="id21870369">Trong hệ thống GIS, hệ quản trị cơ sở dữ liệu GIS được xây dựng bao gồm 2 hệ quản trị cơ sở dữ liệu riêng cho từng phần hoặc xây dựng một hệ quản trị cơ sở dữ liệu chung cho cả hai cơ sở dữ liệu con kể trên. Thông thường hệ quản trị cơ sở dữ liệu GIS được xây dựng bao gồm 3 hệ quản trị cơ sở dữ liệu con:</para>
+        <list id="id21870373" list-type="bulleted">
+          <item>Hệ quản trị cơ sở dữ liệu cho cơ sở dữ liệu địa lý.</item>
+          <item>Hệ quản trị cơ sở dữ liệu quan hệ ở mức tra cứu, hỏi đáp. Hệ này được tích hợp cùng với hệ quản trị cơ sở dữ liệu địa lý cho phép người ta dùng truy nhập dữ liệu địa lý và dữ liệu thuộc tính đồng thời. Tuy nhiên, hệ quản trị cơ sở dữ liệu này cho thao tác trên cơ sở dữ liệu thuộc tính bị hạn chế.</item>
+          <item>Hệ quản trị cơ sở dữ liệu thuộc tính. Thông thường các hệ thống GIS đều lấy một hệ quản trị cơ sở dữ liệu quan hệ hiện có để quản trị và thực hiện các bài toán trên dữ liệu thuộc tính mà không liên quan đến dữ liệu không gian. Ví dụ: FOX, MS SQL, ORACLE.</item>
+        </list>
+        <para id="id19056028">Về hệ quản trị cơ sở dữ liệu quản lý cơ sở dữ liệu thuộc tính, chúng ta đã xem xét chi tiết trong phần “Hệ thống cơ sở dữ liệu“. Vì vậy, ở đây chúng ta chỉ đi sâu vào hệ quản trị cơ sở dữ liệu cho dữ liệu không gian.</para>
+        <para id="id19056033">Hệ quản trị cơ sở dữ liệu cho dữ liệu không gian bao gồm các hệ thống con sau:</para>
+        <list id="id22401957" list-type="bulleted">
+          <item>Hệ thống nhập bản đồ </item>
+          <item>Hệ thống hiển thị bản đồ </item>
+          <item>Hệ thống tra cứu, hỏi đáp cơ sở dữ liệu </item>
+          <item>Hệ thống phân tích địa lý </item>
+          <item>Hệ thống phân tích thống kê</item>
+          <item>Hệ thống đầu ra </item>
+        </list>
+      </section>
+      <section id="id-717445483914">
+        <title>Hệ quản trị cơ sở dữ liệu GIS</title>
+        <section id="id-237753371796">
+          <title>Hệ thống nhập bản đồ</title>
+          <para id="id21894706">Hệ thống cung cấp các công cụ để số hoá các đối tượng trên bản đồ. Hiện nay tồn tại hai phương pháp để chuyển bản đồ giấy thành bản đồ số:</para>
+          <para id="id21844936">- Số hoá bản đồ: dùng bàn vẽ (digitizer) đi lại các đối tượng bản đồ trên giấy. Chức năng có thể có trong bản thân hệ thống hoặc dùng 1 phần mềm khác số hoá, sau đó nhập vào kết quả số hoá bởi phần mềm đó.</para>
+          <para id="id21854798">- Vector hoá bản đồ: Bản đồ được quét vào thành dạng file ảnh (scanning) sau đó chuyển sang dạng vector (vectorizing). Quá trình vectorizing có thể thực hiện thủ công qua số hoá trên màn hình (head up digitizing) hoặc dùng phần mềm chuyển tự động/bán tự động từ ảnh sang vector.</para>
+          <para id="id22012080">Một trong những nguồn dữ liệu quan trọng là dữ liệu được nhập từ các hệ thống khác. Vì vậy hệ thống nhập bản đồ phải có chức năng nhập (import) các dạng (format) dữ liệu khác nhau.</para>
+        </section>
+        <section id="id-21519129367">
+          <title>Hệ thống hiển thị bản đồ</title>
+          <para id="id21761277">Hệ thống cung cấp các khả năng hiển thị bản đồ trên màn hình cho người sử dụng xem. Hiện nay chức năng hiển thị bản đồ đều có khả năng cung cấp cách nhìn 3 chiều (3D). Bản đồ sẽ được thể hiện sinh động, trực quan hơn.</para>
+        </section>
+        <section id="id-415222248959">
+          <title>Tra cứu, hỏi đáp cơ sở dữ liệu</title>
+          <para id="id21773836">Hệ thống cung cấp các công cụ cho người sử dụng tra cứu, hỏi đáp, lấy các thông tin cần thiết trong cơ sở dữ liệu ra. Hệ thống này ảnh hưởng trực tiếp đến tính hiệu quả của hệ thống. Bởi vì phần lớn, người dùng chỉ có yêu cầu tra cứu thông tin. Hệ thống tra cứu phải mềm dẻo, dễ sử dụng, thời gian truy cập dữ liệu nhanh. Hệ thống cho phép tra cứu trên cả hai dữ liệu: dữ liệu không gian và dữ liệu thuộc tính </para>
+        </section>
+        <section id="id-842017380888">
+          <title>Hệ thống xử lý, phân tích địa lý</title>
+          <para id="id21936159">Đây là hệ thống thể hiện rõ nhất sức mạnh của GIS. Hệ thống cung cấp các công cụ cho phép người dùng xử lý, phân tích dạng dữ liệu không gian. Từ đó, chúng ta có thể sản sinh ra các thông tin mới (thông tin dẫn suất)</para>
+        </section>
+        <section id="id-100041390042">
+          <title>Hệ thống phân tích thống kê </title>
+          <para id="id21622247">Hệ thống cung cấp các công cụ thống kê trên dữ liệu không gian cũng như dữ liệu thuộc tính. Tuy nhiên các phép phân tích thống kê trên dữ liệu không gian khác biệt so với một số phép phân tích thống kê thông thường trên dữ liệu phi không gian.</para>
+        </section>
+        <section id="id-907785203844">
+          <title>Hệ thống in ấn bản đồ </title>
+          <para id="id21884045">Hệ thống có nhiệm vụ in các bản đồ kết quả ra các thiết bị ra thông dụng như máy in (printer), máy vẽ (Plotter). Yêu cầu đối với hệ thống này là tương thích với nhiều loại thiết bị ngoại vì hiện có trên thị trường.</para>
+        </section>
+      </section>
+    </section>
+  </content>
+</document>

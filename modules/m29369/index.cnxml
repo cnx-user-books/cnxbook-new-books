@@ -1,0 +1,87 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>CPU Structure and Functions</title>
+  <metadata>
+  <md:content-id>m29369</md:content-id><md:title>CPU Structure and Functions</md:title>
+  <md:abstract>This module present the processor organization. We will begin with a summary of processor organization. Registers, which form the internal memory of the processor, are then analyzed. We are then in a position to return to the discussion of the instruction cycle. A description of the instruction cycle and a common technique known as instruction pipelining completes our description. Understanding the organization of the CPU of computer</md:abstract>
+  <md:uuid>b87ac62d-79f2-44f2-b4ae-44eb306a5644</md:uuid>
+</metadata>
+
+<content>
+    <para id="id4299831">Processor Organization</para>
+    <para id="id3555868">To understand the organization of the CPU, let us consider the requirements placed on the CPU, the things that it must do:</para>
+    <list id="id3555878" list-type="bulleted">
+      <item><emphasis>Fetch instruction</emphasis>: The CPU reads an instruction from memory.</item>
+      <item><emphasis>Interpret instruction</emphasis>: The instruction is decoded to determine what action is required.</item>
+      <item><emphasis>Fetch data</emphasis>: The execution of an instruction may require reading data from memory or an I/O module.</item>
+      <item><emphasis>Process data</emphasis>: The execution of an instruction may require performing some arithmetic or logical operation on data.</item>
+      <item><emphasis>Write data</emphasis>: The results of an execution may require writing data to memory or an I/O module.</item>
+    </list>
+    <para id="id3555973">To do these things, it should be clear that the CPU needs to store some data temporarily. It must remember the location of the last instruction so that it can know where to get the next instruction. It needs to store instructions and data temporar­ily while an instruction is being executed. In other words, the CPU needs a small internal memory.</para>
+    <para id="id3555992"><link target-id="id3556060"/> is a simplified view of a CPU, indicating its connection to the rest of the system via the system bus. You will recall (Lecture 1) that the major components of the CPU are an <term>arithmetic and logic unit</term> (ALU) and a <term>control unit</term> (CU). The ALU does the actual computation or processing of data. The con­trol unit controls the movement of data and instructions into and out of the CPU and controls the operation of the ALU. In addition, the figure shows a minimal internal memory, consisting of a set of storage locations, called <term>registers</term>.</para>
+    <figure id="id3556060"><media id="id1170870056620" alt=""><image src="../../media/graphics1-5998.png" mime-type="image/png" height="393" width="452"/></media>
+<caption>The CPU with the System Bus</caption>
+    </figure>
+    
+    <para id="id3604112"><link target-id="id3604144"/> is a slightly more detailed view of the CPU. The data transfer and logic control paths are indicated, including an element labeled <term>internal CPU-bus</term>. This element is needed to transfer data between the various registers and the ALU because the ALU in fact operates only on data in the internal CPU mem­ory.</para>
+    <figure id="id3604144"><media id="id1170870056672" alt=""><image src="../../media/graphics2-b1f8.png" mime-type="image/png" height="478" width="577"/></media>
+    <caption>CPU Internal Structure</caption></figure>
+    
+    <section id="id-826243165364">
+      <title>Register organization</title>
+      <para id="id3604200">Within the CPU, there is a set of registers that function as a level of memory above main memory and cache in the hierarchy. The registers in the CPU perform two roles:</para>
+      <list id="id3604207" list-type="bulleted">
+        <item><emphasis>User-visible registers</emphasis>: These enable the machine- or assembly-language pro­grammer to minimize main memory references by optimizing use of registers.</item>
+        <item><emphasis>Control and status registers</emphasis>: These are used by the control unit to control the operation of the CPU and by privileged, operating system programs to control the execution of programs.</item>
+      </list>
+      <para id="id3604252">There is not a clean separation of registers into these two categories. For example, on some machines the program counter is user visible (e.g., Pentium), but on many it is not (e.g., PowerPC). For purposes of the following discussion, how­ever, we will use these categories.</para>
+      <section id="id-767615265081">
+        <title>User-Visible Registers</title>
+        <para id="id3604275">A user-visible register is one that may be referenced by means of the machine lan­guage that the CPU executes. We can characterize these in the following categories:</para>
+        <list id="id3604288" list-type="bulleted">
+          <item>General purpose</item>
+          <item>Data</item>
+          <item>Address</item>
+          <item>Condition codes</item>
+        </list>
+        <para id="id3604314"><emphasis>General-purpose registers</emphasis>: can be assigned to a variety of functions by the pro­grammer. Sometimes their use within the instruction set is orthogonal to the opera­tion. That is, any general--purpose register can contain the operand for any opcode. This provides true general-purpose register use. Often, however, there are restric­tions. For example, there may be dedicated registers for floating-point and stack operations. In some cases, general-purpose registers can be used for addressing functions (e.g.. register indirect, displacement). In other cases, there is a partial or clean sep­aration between data registers and address registers. </para>
+        <para id="id3604330"><emphasis>Data registers</emphasis> may be used only to hold data and cannot be employed in the calculation of an operand address. </para>
+        <para id="id4329416"><emphasis>Address registers</emphasis> may themselves be somewhat general purpose, or they may be devoted to a particular addressing mode. Examples include the following:</para>
+        <list id="id4329430" list-type="bulleted">
+          <item><emphasis>Segment pointers</emphasis>: In a machine with segmented addressing, a segment register holds the address of the base of the segment. There may be multiple registers: for example, one for the operating system and one for the current process.</item>
+          <item><emphasis>Index registers</emphasis>: These are used for indexed addressing and may be autoindexed.</item>
+          <item><emphasis>Stack pointer</emphasis>: If there is user-visible stack addressing, then typically the stack is in memory and there is a dedicated register that points to the top of the slack. This allows implicit addressing; that is, push, pop, and other slack in­structions need not contain an explicit stack operand.</item>
+        </list>
+        <para id="id4329496"><emphasis>Condition codes register</emphasis> (also referred to <term>as flags</term>): Condition codes are bits set by the CPU hardware as the result of operations. For example, an arithmetic operation may pro­duce a positive, negative, zero, or overflow result. In addition to the result itself being stored in a register or memory, a condition code is also set. The code may sub­sequently be tested as part of a conditional branch operation.</para>
+      </section>
+      <section id="id-380685653309">
+        <title>Control and Status Registers</title>
+        <para id="id4329547">There are a variety of CPU registers that are employed to control the operation of the CPU. Most of these, on most machines, are not visible to the user. Some of them may be visible to machine instructions executed in a control or operating system mode.</para>
+        <para id="id4329559">Of course, different machines will have different register organizations and use different terminology. We list here a reasonably complete list of register types, with a brief description.</para>
+        <para id="id4329566">Four registers are essential to instruction execution:</para>
+        <list id="id4329575" list-type="bulleted">
+          <item><emphasis>Program counter (PC)</emphasis>: Contains the address of an instruction to be fetched.</item>
+          <item><emphasis>Instruction register (IR)</emphasis>: Contains the instruction most recently fetched.</item>
+          <item><emphasis>Memory address registers (MAR)</emphasis>: Contains the address of a location in memory.</item>
+          <item><emphasis>Memory buffer register (MBR)</emphasis>: Contains a word of data lo be written to mem­ory or the word most recently read.</item>
+        </list>
+        <para id="id4469926">Typically, the CPU updates the PC after each instruction fetch so that the PC always points to the next instruction to be executed. A branch or skip instruction will also modify the contents of the PC. The fetched instruction is loaded into an IR, where the opcode and operand specifiers are analyzed. Data are exchanged with memory using the MAR and MBR. In a bus-organized system, the MAR connects directly to the address bus, and the MBR connects directly to the data bus. User-visible registers, in turn, exchange data with the MBR.</para>
+        <para id="id4469942">The four registers just mentioned are used for the movement of data between the CPU and memory. Within the CPU, data must be presented to the ALU for pro­cessing. The ALU may have direct access to the MBR and user-visible registers. Alternatively, there may be additional buffering registers at the boundary to the ALU: these registers serve as input and output registers for the ALL and exchange data with the MBR and user-visible registers.</para>
+        <para id="id4469962">All CPU designs include a register or set of registers, often known as the <term>program status word</term> (PSW), that contain status information. The PSW typically con­tains condition codes plus other stains information. Common fields or flags include the following:</para>
+        <list id="id4469989" list-type="bulleted">
+          <item><emphasis>Sign</emphasis>: Contains the sign bit of the result of the last arithmetic operation.</item>
+          <item><emphasis>Zero</emphasis>: Set when the result is 0.</item>
+          <item><emphasis>Carry</emphasis>: Set if an operation resulted in a carry (addition) into or borrow (sub-traction) out of a high-order hit. Used for multiword arithmetic operations.</item>
+          <item><emphasis>Equal</emphasis>: Set if a logical compare result is equality.</item>
+          <item><emphasis>Overflow</emphasis>: Used to indicate arithmetic overflow</item>
+          <item><emphasis>Interrupt enable/disable</emphasis>: Used to enable or disable interrupts.</item>
+          <item><emphasis>Supervisor</emphasis>: Indicates whether the CPU is executing in supervisor or user mode. Certain privileged instructions can be executed only in supervisor mode, and certain areas of memory can be accessed only in supervisor mode.</item>
+        </list>
+        <para id="id4470122">A number of other registers related to status and control might be found in a particular CPU design. In addition to the PSW, there may be a pointer to a block of memory containing additional status information (e.g., process control blocks). </para>
+        <para id="id4470133">Example Register Organizations:</para>
+        <figure id="id4470140"><media id="id1170869964401" alt=""><image src="../../media/graphics3-5847.png" mime-type="image/png" height="410" width="577"/></media>
+        <caption>Example of microprocessor registers organizations</caption></figure>
+        
+      </section>
+    </section>
+  </content>
+</document>
