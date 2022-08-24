@@ -1,3 +1,20 @@
-<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">  <md:content-id>col10894</md:content-id>  <md:title>New books</md:title>      <md:license url="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License 3.0</md:license>  <md:language>en</md:language>              <md:uuid>e33f1504-d135-4cd7-b488-452ba97e8c4a</md:uuid>
-<md:slug>new-books</md:slug>
-</metadata>  <col:content>                        <col:subcollection>        <md:title>(Untitled)</md:title>                                <col:content>                  </col:content>      </col:subcollection>              <col:module document="m30078"/>                            <col:module document="m30057"/>                            <col:module document="m29369"/>                    </col:content></col:collection>
+<?xml version="1.0"?>
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en" authors="Tr&#x1EA7;n T&#xFA;">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col10894</md:content-id>
+    <md:title>New books</md:title>
+    <md:license url="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License 3.0</md:license>
+    <md:language>en</md:language>
+    <md:uuid>e33f1504-d135-4cd7-b488-452ba97e8c4a</md:uuid>
+    <md:slug>new-books</md:slug>
+  </metadata>
+  <col:content>
+    <col:subcollection>
+      <md:title>(Untitled)</md:title>
+      <col:content>                  </col:content>
+    </col:subcollection>
+    <col:module document="m30078"/>
+    <col:module document="m30057"/>
+    <col:module document="m29369"/>
+  </col:content>
+</col:collection>
